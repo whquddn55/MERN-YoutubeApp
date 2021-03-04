@@ -27,6 +27,15 @@ const upload = multer({
     }
 }).single("file");
 
+router.get('/getVideos', (req, res) => {
+    Video.find()
+        .populate('writer')
+        .exec((err, videos) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({success : true, videos});
+        })
+});
+
 router.post('/uploadfiles', (req, res) => {
    upload(req, res, error => {
        if (error) return res.status(400).json({success : false});
