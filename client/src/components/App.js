@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <NavBar/>
-      <div>
+      <div style = {{paddingTop : '70px', minHeight : 'calc(100vh - 80px'}}>
         <Switch>
           <Route exact path="/" component={Auth(LandingPage, true)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
