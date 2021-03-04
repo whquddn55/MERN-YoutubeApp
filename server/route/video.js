@@ -29,10 +29,20 @@ const upload = multer({
 
 router.get('/getVideos', (req, res) => {
     Video.find()
-        .populate('writer')
+        .populate('writer') // writer property의 모든 정보를 다 가져옴. 그냥 쓰면? object id 만 가져옴
         .exec((err, videos) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({success : true, videos});
+        })
+});
+
+router.post('/getVideoDetail', (req, res) => {
+    let videoId = req.body.videoId;
+    Video.findOne({"_id" : req.body.videoId})
+        .populate('writer')
+        .exec((err, videoDetail) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({success : true, videoDetail});
         })
 });
 
