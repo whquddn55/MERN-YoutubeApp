@@ -21,5 +21,6 @@ app.use('/uploads', express.static('uploads'));
 
 app.use('/api/users', require('./route/user'));
 app.use('/api/video', require('./route/video'));
+app.use('/api/subscribe', require('./route/subscribe'));
 
 app.listen(3000, () => console.log("App started on port 3000"));
