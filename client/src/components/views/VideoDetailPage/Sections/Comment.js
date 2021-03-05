@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import {Input, Button} from 'antd';
 import axios from 'axios';
 import SingleComment from './SingleComment';
-import ReplyComment from './ReplyComment';
 
 function Comment(props) {
     const [commentText, setCommentText] = useState('');
@@ -46,8 +45,7 @@ function Comment(props) {
             props.commentList.map((comment, index) => (
                 (!comment.responseTo &&
                 <div key = {index}>
-                    <SingleComment refreshComment = {props.refreshComment} key = {index} comment = {comment} postId = {props.postId}/>
-                    <ReplyComment refreshComment = {props.refreshComment} commentList = {props.commentList} parentCommentId = {comment._id} postId = {props.postId}/>
+                    <SingleComment refreshComment = {props.refreshComment} commentList = {props.commentList} comment = {comment} postId = {props.postId}/>
                 </div>
             )))}
 

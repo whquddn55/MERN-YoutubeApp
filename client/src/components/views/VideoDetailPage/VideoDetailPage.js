@@ -8,7 +8,7 @@ import Comment from './Sections/Comment';
 
 function VideoDetailPage(props) {
     const [videoDetail, setVideoDetail] = useState({});
-    const [comments, setComments] = useState([]);
+    const [commentList, setComments] = useState([]);
     const user = useSelector(state => state.user);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function VideoDetailPage(props) {
     }, []);
 
     const refreshComment = (newComment) => {
-        setComments([...comments, newComment]);
+        setComments([...commentList, newComment]);
     }
 
     if (videoDetail.writer && user.userData) {
@@ -58,7 +58,7 @@ function VideoDetailPage(props) {
                             </List.Item>
 
                             {/*comments*/}
-                            <Comment refreshComment = {refreshComment} commentList = {comments} postId = {props.match.params.videoId} />
+                            <Comment refreshComment = {refreshComment} commentList = {commentList} postId = {props.match.params.videoId} />
                         </div>
                     </Col>
                     <Col lg = {6} xs = {24}>
