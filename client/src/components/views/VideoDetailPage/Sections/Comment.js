@@ -21,16 +21,24 @@ function Comment(props) {
             postId: props.postId,
         }
 
-        axios.post('/api/comment/saveComment', commentVariable)
-            .then(response => {
-                if (response.data.success) {
-                    setCommentText('');
-                    props.refreshComment(response.data.result);
-                }
-                else {
-                    alert("Fail to save comment");
-                }
-            })
+        if (!user.userData.isAuth) {
+            alert("로그인 한 유저만 댓글작성이 가능합니다!");
+        }
+        else if (!commentText) {
+            alert("빈 댓글은 작성이 불가능합니다!");
+        }
+        else {
+            axios.post('/api/comment/saveComment', commentVariable)
+                .then(response => {
+                    if (response.data.success) {
+                        setCommentText('');
+                        props.refreshComment(response.data.result);
+                    }
+                    else {
+                        alert("Fail to save comment");
+                    }
+                })
+        }
     }
 
     return (

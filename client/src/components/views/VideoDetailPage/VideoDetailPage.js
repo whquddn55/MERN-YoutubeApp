@@ -5,6 +5,7 @@ import axios from 'axios';
 import SideVideo from './Sections/SideVideo';
 import Subscribe from './Sections/Subscribe';
 import Comment from './Sections/Comment';
+import LikeDislikes from './Sections/LikeDislikes';
 
 function VideoDetailPage(props) {
     const [videoDetail, setVideoDetail] = useState({});
@@ -48,7 +49,10 @@ function VideoDetailPage(props) {
                         <div style = {{width : '100%', padding : '3rem 4rem'}}>
                             <video style = {{width : '100%'}} src={`http://localhost:3000/${videoDetail.filePath}`} controls/>
                             <List.Item
-                                actions = {user.userData._id !== videoDetail.writer._id && [<Subscribe userTo = {videoDetail.writer._id} userFrom = {user.userData._id}/>]}
+                                actions = {[
+                                    <LikeDislikes video postId = {props.match.params.videoId}/>,
+                                    user.userData._id !== videoDetail.writer._id && <Subscribe userTo = {videoDetail.writer._id} userFrom = {user.userData._id}/>,
+                                ]}
                             >
                                 <List.Item.Meta
                                     avatar={<Avatar src ={videoDetail.writer.image} alt />}

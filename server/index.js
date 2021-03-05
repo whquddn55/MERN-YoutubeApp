@@ -23,5 +23,6 @@ app.use('/api/users', require('./route/user'));
 app.use('/api/video', require('./route/video'));
 app.use('/api/subscribe', require('./route/subscribe'));
 app.use('/api/comment', require('./route/comment'));
+app.use('/api/like', require('./route/like'));
 
 app.listen(3000, () => console.log("App started on port 3000"));
