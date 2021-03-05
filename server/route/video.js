@@ -47,6 +47,18 @@ router.post('/getVideoDetail', (req, res) => {
         })
 });
 
+router.post('/upView', (req, res) => {
+    let videoId = req.body.videoId;
+    Video.findOne({"_id" : req.body.videoId}, (err, videoDetail) => {
+        if (err) return res.status(400).send(err);
+
+        Video.findOneAndUpdate({"_id" : req.body.videoId}, {"views" : videoDetail.views + 1}, err => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({success : true});
+        })
+    })
+});
+
 router.post('/uploadfiles', (req, res) => {
    upload(req, res, error => {
        if (error) return res.status(400).json({success : false});

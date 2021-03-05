@@ -14,8 +14,7 @@ function VideoDetailPage(props) {
 
     useEffect(() => {
         let videoId = props.match.params.videoId;
-        let variable = {videoId};
-        axios.post('/api/video/getVideoDetail', variable)
+        axios.post('/api/video/getVideoDetail', {videoId})
             .then(response => {
                 if (response.data.success) {
                     setVideoDetail(response.data.videoDetail);
@@ -24,8 +23,17 @@ function VideoDetailPage(props) {
                     alert(`Fail to get Video[${videoId}] Info`);
                 }
             })
+        axios.post('/api/video/upView', {videoId})
+            .then(response => {
+                if (response.data.success) {
 
-        axios.post('/api/comment/getComments', variable)
+                }
+                else {
+                    alert("Fail to ")
+                }
+            })
+
+        axios.post('/api/comment/getComments', {videoId})
             .then(response => {
                 if (response.data.success) {
                     setComments(response.data.comments);
