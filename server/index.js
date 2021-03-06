@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const mongoURI = require('./config/key');
+const {mongoURI} = require('./config/key');
 const mongoose = require('mongoose');
 mongoose.connect(mongoURI, {
     useNewUrlParser : true,
